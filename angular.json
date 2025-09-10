@@ -23,6 +23,7 @@
             ],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
+            "baseHref": "/triclope/",
             "assets": [
               {
                 "glob": "**/*",
@@ -59,6 +60,10 @@
         },
         "serve": {
           "builder": "@angular/build:dev-server",
+          "options": {
+            "proxyConfig": "proxy.conf.json",
+            "servePath": "/triclope/"
+          },
           "configurations": {
             "production": {
               "buildTarget": "triclope-frontend:build:production"
@@ -94,5 +99,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }

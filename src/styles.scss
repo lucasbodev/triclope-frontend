@@ -1,1 +1,54 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+    --primary-gradient: -webkit-linear-gradient(120deg, #A478E8, #516CF7);
+    --secondary-color: #516CF7;
+    --secondary-color-500: #b8c2f6;
+    --secondary-color-750: #dee3f7;
+    --secondary-color-800: #ebedf6;
+    --secondary-color-900: #f6f7fd;
+    --secondary-gradient: -webkit-linear-gradient(120deg, #c6cffe 0%, #f6f7fd 100%);
+    --primary-color: #A478E8;
+    --primary-color-250: #ccb4ef;
+    --primary-color-500: #f6f0ff;
+    --primary-color-900: #f6f2ff;
+    --white: hsl(0, 0%, 100%);
+    --black: #2B2C2E;
+    --black-500: #4A4A4A;
+    --black-900: #E9E1DD;
+
+    /* Typographie */
+    --font-size-1: 12px;
+    --font-size-2: 14px;
+    --font-size-3: 16px;
+    --font-size-4: 18px;
+    --font-size-5: 20px;
+    --font-size-6: 24px;
+    --font-size-7: 34px;
+
+    /* Hauteur de ligne */
+    --line-height-p: 25px;
+
+    /* Espacements */
+    --space-1: 8px;
+    --space-2: 12px;
+    --space-3: 16px;
+    --space-4: 24px;
+    --space-5: 32px;
+    --space-6: 48px;
+    --space-7: 56px;
+    --space-8: 80px;
+    --space-9: 180px;
+
+    /* Bordures */
+    --border-radius: 16px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    color: rgba(0, 0, 0, 0.87);
+    background-color: #f5f5f5;
+}

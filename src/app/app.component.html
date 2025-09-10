@@ -1,0 +1,14 @@
+<nav class="navbar" *ngIf="authService.isAuthenticated()">
+  <div class="nav-container">
+    <a routerLink="/" class="nav-brand">Triclope</a>
+    
+    <div class="nav-menu">
+      <span class="nav-user">Bonjour, {{ authService.getUsername() }}</span>
+      <button class="btn-logout" (click)="logout()">Déconnexion</button>
+    </div>
+  </div>
+</nav>
+
+<main class="main-content">
+  <router-outlet />
+</main>

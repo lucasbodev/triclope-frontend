@@ -1,0 +1,61 @@
+@if (!authService.isLoggedIn()) {
+  <div class="welcome-container">
+    <div class="welcome-card">
+      <h1>Bienvenue sur Triclope</h1>
+      <p>Gérez vos participations et triclopes en toute simplicité.</p>
+      
+      <div class="auth-buttons">
+        <a routerLink="/auth/login" class="btn btn-primary">Se connecter</a>
+        <a routerLink="/auth/register" class="btn btn-secondary">S'inscrire</a>
+      </div>
+    </div>
+  </div>
+} @else {
+  <div class="home-container">
+    <h1>Triclope Dashboard</h1>
+    
+    @if (loading()) {
+      <div class="loading">Chargement...</div>
+    }
+    
+    @if (error()) {
+      <div class="error">{{ error() }}</div>
+    }
+    
+    <section class="triclopes-section">
+      <h2>Mes Triclopes</h2>
+      <app-button (click)="onCreateTriclope()">Créer un Triclope</app-button>
+      
+      @if (triclopes().length > 0) {
+        <div class="triclopes-grid">
+          @for (triclope of triclopes(); track triclope.id) {
+            <div class="triclope-card">
+              <h3>{{ triclope.name }}</h3>
+              <p>Créé le: {{ triclope.creationDate | date:'short' }}</p>
+            </div>
+          }
+        </div>
+      } @else {
+        <p>Aucun triclope trouvé.</p>
+      }
+    </section>
+    
+    <section class="participations-section">
+      <h2>Participations Récentes</h2>
+      @if (participations().length > 0) {
+        <div class="participations-list">
+          @for (participation of participations(); track participation.id) {
+            <div class="participation-item">
+              <p><strong>{{ participation.giver.firstName }} {{ participation.giver.lastName }}</strong> 
+                 → <strong>{{ participation.taker.firstName }} {{ participation.taker.lastName }}</strong></p>
+              <p>Quantité: {{ participation.quantity }}</p>
+              <p>{{ participation.createdAt | date:'short' }}</p>
+            </div>
+          }
+        </div>
+      } @else {
+        <p>Aucune participation trouvée.</p>
+      }
+    </section>
+  </div>
+}

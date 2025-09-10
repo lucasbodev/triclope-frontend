@@ -4,7 +4,9 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "start:triclope": "ng serve --serve-path=/triclope/",
     "build": "ng build",
+    "build:triclope": "ng build --base-href=/triclope/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
