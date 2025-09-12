@@ -2,6 +2,7 @@ export interface Triclope {
   id: string;
   name: string;
   creationDate: string; // ISO date string
+  logo?: number[] | null; // byte array for the logo image
 }
 
 export interface TriclopeCreationRequest {

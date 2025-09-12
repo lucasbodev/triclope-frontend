@@ -1,0 +1,136 @@
+<div class="triclope-card" [style.background-color]="backgroundColor()">
+  @if (!isExpanded()) {
+    <div class="triclope-item" (click)="toggleExpansion()" style="cursor: pointer; display: flex; justify-content: space-between; align-items: center; margin-bottom: 0;">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <div class="triclope-avatar">
+          @if (triclope().logo && triclope().logo!.length > 0) {
+            <img [src]="'data:image/png;base64,' + arrayBufferToBase64(triclope().logo!)" alt="Logo" class="triclope-logo">
+          } @else {
+            <div class="triclope-skeleton" [style.background]="avatarColor()">
+              <span class="triclope-initial">{{ getInitial(triclope().name) }}</span>
+            </div>
+          }
+        </div>
+        <div>
+          @if (showParticipantName()) {
+            <div style="font-size: 12px; font-family: Helvetica Light;" [style.color]="textColor()">{{ participantName() }}</div>
+          }
+          <div style="display: flex; align-items: center; gap: 6px;">
+            <span style="font-size: 20px; font-family: 'Cy Grotesk', sans-serif; font-weight: 900;" [style.color]="textColor()">{{ participantCount() }}</span>
+            <span style="font-size: 14px; font-family: Helvetica Rounded, sans-serif; font-weight: bold;" [style.color]="textColor()">clopes</span>
+          </div>
+        </div>
+      </div>
+      <div style="width: 12px; height: 12px;">
+        <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4.5 2L7.5 6L4.5 10" [attr.stroke]="textColor()" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </div>
+  } @else {
+    <div class="triclope-expanded">
+      <!-- Header -->
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; padding-bottom: 12px;" [style.border-bottom-color]="borderColor()">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <div class="triclope-avatar">
+            @if (triclope().logo && triclope().logo!.length > 0) {
+              <img [src]="'data:image/png;base64,' + arrayBufferToBase64(triclope().logo!)" alt="Logo" class="triclope-logo">
+            } @else {
+              <div class="triclope-skeleton" [style.background]="avatarColor()">
+                <span class="triclope-initial">{{ getInitial(triclope().name) }}</span>
+              </div>
+            }
+          </div>
+          <div>
+            @if (showParticipantName()) {
+              <div style="font-size: 12px; font-family: Helvetica Light;" [style.color]="textColor()">{{ participantName() }}</div>
+            }
+            <div style="display: flex; align-items: center; gap: 6px;">
+              <span style="font-size: 20px; font-family: 'Cy Grotesk', sans-serif; font-weight: 900;" [style.color]="textColor()">{{ participantCount() }}</span>
+              <span style="font-size: 14px; font-family: Helvetica Rounded, sans-serif; font-weight: bold;" [style.color]="textColor()">clopes</span>
+            </div>
+          </div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <div class="details-icon" (click)="navigateToDetails()">
+            <svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 3.75V6.75M9 11.25V14.25M3.75 9H6.75M11.25 9H14.25M12.75 5.25L10.5 7.5M5.25 12.75L7.5 10.5M12.75 12.75L10.5 10.5M5.25 5.25L7.5 7.5" [attr.stroke]="textColor()" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div style="width: 18px; height: 18px; cursor: pointer;" (click)="toggleExpansion()">
+            <svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3.75 3L15 15M15 3L3.75 15" [attr.stroke]="textColor()" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+      @if (displayMode() === 'participations') {
+        @for (participation of participations(); track participation.id) {
+          <div class="participation-item" [class.last]="participation === participations()[participations().length - 1]">
+            <div class="participation-info">
+              <div class="clope-badge">
+                <span class="clope-count">{{ participation.quantity }}</span>
+                <div class="clope-icon">
+                  <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3.0455 8.33965L16.5375 8.33965L16.5375 11.9522L3.0455 11.9522L3.0455 8.33965Z" fill="#333"/>
+                    <path d="M14.7035 8.33969L19.5832 8.33969L19.5832 11.9522L14.7035 11.9522L14.7035 8.33969Z" fill="#333"/>
+                    <path d="M19.023 10.5988L19.5155 10.0984L19.5155 11.0992L19.023 10.5988Z" fill="#333"/>
+                    <path d="M16.1931 9.96712L16.9384 9.46768L16.9384 10.4665L16.1931 9.96712Z" fill="#333"/>
+                    <path d="M17.5377 9.40254L18.4006 8.9021L18.4006 9.903L17.5377 9.40254Z" fill="#333"/>
+                    <path d="M15.9802 8.73119L16.96 8.23175L16.96 9.23059L15.9802 8.73119Z" fill="#333"/>
+                    <path d="M17.4847 10.945L18.4617 10.4456L18.4617 11.4444L17.4847 10.945Z" fill="#333"/>
+                    <path d="M18.9615 8.83343L19.5832 8.33398L19.5832 9.33282L18.9615 8.83343Z" fill="#333"/>
+                    <path d="M17.3643 8.33969L18.0732 7.84025L18.0732 8.83909L17.3643 8.33969Z" fill="#333"/>
+                    <path d="M15.5299 11.5209L16.5238 11.0215L16.5238 12.0203L15.5299 11.5209Z" fill="#333"/>
+                    <path d="M0.833282 8.33332L3.11936 10.6194L3.11936 13.9065L0.833282 11.6204L0.833282 8.33332Z" fill="#333"/>
+                    <path d="M1.24008 10.042L2.98534 11.7872L2.98534 13.2968L1.24008 11.5516L1.24008 10.042Z" fill="#333"/>
+                    <path d="M1.2532 8.64086L2.97554 10.3632L2.97554 11.9185L1.2532 10.1962L1.2532 8.64086Z" fill="#333"/>
+                    <path d="M2.97211 8.33778L4.66227 10.028L4.66227 13.6476L2.97211 11.9574L2.97211 8.33778Z" fill="#333"/>
+                    <path d="M14.7035 8.33969L19.5832 8.33969L19.5832 11.9522L14.7035 11.9522L14.7035 8.33969Z" fill="#333"/>
+                  </svg>
+                </div>
+              </div>
+              <span class="participation-date">{{ formatDate(participation.createdAt) }}</span>
+              <span class="participation-time">{{ formatTime(participation.createdAt) }}</span>
+            </div>
+            <div class="participation-actions">
+              <div class="delete-icon" (click)="deleteParticipation(participation.id)">
+                <svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M3.75 3L15 15M15 3L3.75 15" stroke="#333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+        }
+      } @else if (displayMode() === 'participants') {
+        @for (participant of participants(); track participant.user.id) {
+          <div class="participant-item" [class.last]="participant === participants()[participants().length - 1]">
+            <div class="participant-info">
+              <div class="participant-avatar">
+                @if (participant.user.avatar) {
+                  <img [src]="'data:image/png;base64,' + arrayBufferToBase64(participant.user.avatar)" alt="Avatar" class="participant-avatar-img">
+                } @else {
+                  <div class="participant-avatar-placeholder" [style.background]="participant.backgroundColor || 'linear-gradient(135deg, #ff9f43, #ff6b35)'">
+                    <span class="participant-initial">{{ getInitial(participant.user.firstName + ' ' + participant.user.lastName) }}</span>
+                  </div>
+                }
+              </div>
+              <div class="participant-details">
+                <div class="participant-name">{{ participant.user.firstName }} {{ participant.user.lastName }}</div>
+                <div class="participant-count-section">
+                  <span class="participant-count">{{ participant.count }}</span>
+                  <span class="participant-unit">clopes</span>
+                </div>
+              </div>
+            </div>
+            <div class="participant-arrow">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4.5 2L7.5 6L4.5 10" [attr.stroke]="textColor()" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+        }
+      }
+    </div>
+  }
+</div>

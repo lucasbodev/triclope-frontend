@@ -1,0 +1,146 @@
+<!-- Main container matching Figma dimensions -->
+<div class="triclope-details-container">
+  <!-- Header section -->
+  <div class="header-section">
+    <div class="header-content">
+      <!-- Back arrow -->
+      <div class="back-arrow" (click)="goBack()">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10 12L6 8L10 4" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+
+      <!-- Title -->
+      <div class="title-section">
+        <h1 class="triclope-title">{{ triclope().name }}</h1>
+      </div>
+
+      <!-- Hamburger menu -->
+      <div class="hamburger-menu" (click)="toggleMenu()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3 6H21" stroke="#000000" stroke-width="2" stroke-linecap="round"/>
+          <path d="M3 12H21" stroke="#000000" stroke-width="2" stroke-linecap="round"/>
+          <path d="M3 18H21" stroke="#000000" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chart section -->
+  <div class="chart-section">
+    <div class="chart-placeholder">
+      <!-- Placeholder for the chart/graph -->
+      <div class="chart-vector-1"></div>
+      <div class="chart-vector-2"></div>
+      <div class="chart-label">Total des grattages ce mois-ci</div>
+    </div>
+  </div>
+
+  <!-- Stats section -->
+  <div class="stats-section">
+    <!-- Personal count -->
+    <div class="stat-item">
+      <div class="stat-number">{{ personalCount() }}</div>
+      <div class="stat-label">par toi</div>
+    </div>
+
+    <!-- Total count -->
+    <div class="stat-item">
+      <div class="stat-number">{{ totalCount() }}</div>
+      <div class="stat-label">par tout le monde</div>
+    </div>
+  </div>
+
+  <!-- Add participation button -->
+  <div class="add-button-section">
+    <button class="add-participation-btn">
+      <div class="add-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 4V20M20 12H4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <span class="add-text">Ajouter un grattage</span>
+    </button>
+  </div>
+
+  <!-- Participants section -->
+  <div class="participants-section">
+    <div class="participants-header">
+      <h2 class="participants-title">Les participants</h2>
+      <div class="add-user-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M16 21V19C16 17.9391 15.5786 16.9217 14.8284 16.1716C14.0783 15.4214 13.0609 15 12 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M8.5 11C10.7091 11 12.5 9.20914 12.5 7C12.5 4.79086 10.7091 3 8.5 3C6.29086 3 4.5 4.79086 4.5 7C4.5 9.20914 6.29086 11 8.5 11Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M20 8V14" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M23 11H17" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Participants list using triclope-card component -->
+    <div class="participants-list">
+      <app-triclope-card
+        [triclope]="triclope()"
+        [participants]="participants()"
+        [displayMode]="'participants'"
+        [backgroundColor]="'#fdf7ff'"
+        [textColor]="'#333'"
+        [borderColor]="'#e6b3ff'"
+        [avatarColor]="'linear-gradient(135deg, #ff9f43, #ff6b35)'">
+      </app-triclope-card>
+    </div>
+  </div>
+</div>
+
+<!-- Sliding Menu Overlay -->
+<div class="menu-overlay" [class.active]="isMenuOpen()" (click)="closeMenu()">
+  <div class="menu-content" (click)="$event.stopPropagation()">
+    <!-- Close button -->
+    <div class="menu-header">
+      <button class="close-button" (click)="closeMenu()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M18 6L6 18M6 6L18 18" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Menu items -->
+    <div class="menu-items">
+      <div class="menu-item" (click)="navigateToMesDons()">
+        <span class="menu-item-text">Tes dons</span>
+        <div class="menu-item-arrow">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5 2L9 7L5 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <span class="menu-item-text">Participants</span>
+        <div class="menu-item-arrow">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5 2L9 7L5 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <span class="menu-item-text">Stats</span>
+        <div class="menu-item-arrow">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5 2L9 7L5 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <span class="menu-item-text">Paramètres</span>
+        <div class="menu-item-arrow">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5 2L9 7L5 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -34,7 +34,18 @@ export class TriclopeService extends BaseHttpService {
    * Crée un nouveau triclope
    */
   createTriclope(request: TriclopeCreationRequest): Observable<Triclope> {
-    return this.post<Triclope>(this.endpoint, request);
+    const formData = new FormData();
+    formData.append('name', request.name);
+    formData.append('createdBy', request.createdBy);
+    if (request.logo) {
+      // Convert byte array to blob
+      const blob = new Blob([new Uint8Array(request.logo)], { type: 'image/*' });
+      formData.append('logo', blob);
+    }
+
+    return this.http.post<Triclope>(`${this.baseUrl}/${this.endpoint}`, formData, {
+      headers: {} // No Content-Type header for FormData
+    });
   }
 
   /**

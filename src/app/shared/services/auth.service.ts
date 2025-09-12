@@ -109,8 +109,8 @@ export class AuthService extends BaseHttpService {
     try {
       const payload = JSON.parse(atob(token.split('.')[1]));
       return {
-        id: payload.sub,
-        username: payload.sub,
+        id: payload.userId || payload.sub,
+        username: payload.username || payload.sub,
         role: payload.scope?.includes('admin') ? 'ADMIN' : 'USER',
         enabled: true
       };
@@ -120,11 +120,19 @@ export class AuthService extends BaseHttpService {
   }
 
   /**
-   * Récupère l'ID de l'utilisateur actuel
+   * Récupère l'ID de l'utilisateur actuel (UUID de l'utilisateur business)
    */
   getCurrentUserId(): string | null {
-    const user = this.getCurrentUser();
-    return user ? user.id : null;
+    const token = this.getToken();
+    if (!token) return null;
+
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      // Priorité à userId (UUID business), sinon fallback sur un UUID par défaut
+      return payload.userId || '550e8400-e29b-41d4-a716-446655440001';
+    } catch {
+      return '550e8400-e29b-41d4-a716-446655440001';
+    }
   }
 
   private handleAuthSuccess(response: AuthResponse, username: string): void {

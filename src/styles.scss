@@ -1,3 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+/* Font locale Cy Grotesk */
+@font-face {
+  font-family: 'Cy Grotesk';
+  src: url('./assets/fonts/kobuzan-cy-grotesk-grand-dark.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
     --primary-gradient: -webkit-linear-gradient(120deg, #A478E8, #516CF7);
     --secondary-color: #516CF7;

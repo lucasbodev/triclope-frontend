@@ -1,0 +1,222 @@
+.triclope-card {
+  background-color: var(--card-background-color, #fdf7ff);
+  padding: 12px;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  transition: all 0.3s ease-in-out;
+  color: var(--card-text-color, #333);
+}
+
+.triclope-expanded {
+  transition: all 0.3s ease-in-out;
+}
+
+.triclope-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+}
+
+.triclope-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.triclope-skeleton {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #ff9f43, #ff6b35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  animation: pulse 2s infinite;
+}
+
+.triclope-initial {
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  font-family: 'Cy Grotesk', sans-serif;
+  text-transform: uppercase;
+}
+
+.participation-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--card-border-color, #e6b3ff);
+
+  &.last {
+    border-bottom: none;
+    border-top: 1px solid var(--card-border-color, #e6b3ff);
+  }
+}
+
+.participation-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.clope-badge {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  border: 1px solid #fdf7ff;
+  border-radius: 0;
+}
+
+.clope-count {
+  font-size: 16px;
+  font-family: 'Cy Grotesk', sans-serif;
+  font-weight: 900;
+  color: #333;
+  padding: 4px 8px;
+}
+
+.clope-icon {
+  width: 20px;
+  height: 20px;
+  padding: 0 4px;
+}
+
+.participation-date,
+.participation-time {
+  font-size: 14px;
+  font-family: Helvetica Light;
+  color: #333;
+}
+
+.participation-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 8px;
+}
+
+.delete-icon {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+.details-icon {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+.participant-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--card-border-color, #e6b3ff);
+
+  &.last {
+    border-bottom: none;
+    border-top: 1px solid var(--card-border-color, #e6b3ff);
+  }
+}
+
+.participant-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.participant-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+}
+
+.participant-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.participant-avatar-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+}
+
+.participant-initial {
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  font-family: 'Cy Grotesk', sans-serif;
+  text-transform: uppercase;
+}
+
+.participant-details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.participant-name {
+  font-size: 14px;
+  font-family: Helvetica Light;
+  color: #333;
+}
+
+.participant-count-section {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.participant-count {
+  font-size: 16px;
+  font-family: 'Cy Grotesk', sans-serif;
+  font-weight: 900;
+  color: #333;
+}
+
+.participant-unit {
+  font-size: 12px;
+  font-family: Helvetica Rounded, sans-serif;
+  font-weight: bold;
+  color: #333;
+}
+
+.participant-arrow {
+  width: 12px;
+  height: 12px;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+  }
+}

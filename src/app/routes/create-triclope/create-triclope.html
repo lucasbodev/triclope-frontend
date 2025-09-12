@@ -1,0 +1,72 @@
+<div class="create-triclope-container">
+  <!-- Header with close button -->
+  <div class="header">
+    <button class="close-btn" (click)="onClose()">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M18 6L6 18M6 6L18 18" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Main content -->
+  <div class="content">
+    <!-- Title section -->
+    <div class="title-section">
+      <h1 class="main-title">MArre de te faire racketter?</h1>
+      <p class="subtitle">Crée un TriClope pour maintenir une justice dans ce monde de rats.</p>
+    </div>
+
+    <!-- Form section -->
+    <div class="form-section">
+      <!-- Name input -->
+      <div class="input-group">
+        <label class="input-label">Tu veux l'appeler comment ?</label>
+        <input
+          type="text"
+          class="name-input"
+          [(ngModel)]="triclopeName"
+          placeholder="Son blaze"
+          maxlength="50"
+        >
+      </div>
+
+      <!-- Photo upload -->
+      <div class="upload-group">
+        <label class="upload-label">Envoie une photo :</label>
+        <div class="upload-area" (click)="onFileClick()" [class.drag-over]="isDragOver()" [class.has-preview]="!!imagePreview">
+          <input
+            type="file"
+            #fileInput
+            class="file-input"
+            accept="image/png,image/jpg,image/jpeg,image/webp"
+            (change)="onFileSelected($event)"
+            style="display: none;"
+          >
+          <div class="upload-content" *ngIf="!imagePreview">
+            <svg class="upload-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M14 2H6C4.89543 4 4 4.89543 4 6V18C4 19.1046 4.89543 20 6 20H18C19.1046 20 20 19.1046 20 18V8L14 2Z" stroke="#429086" stroke-width="1"/>
+              <path d="M14 2V8H20" stroke="#429086" stroke-width="1"/>
+              <path d="M12 12L8 16H10V20H14V16H16L12 12Z" fill="#429086"/>
+            </svg>
+            <p class="upload-text">Parcourir les fichiers</p>
+            <p class="upload-hint">Format png, jpg, jpeg, webp & Max. 5MB</p>
+          </div>
+          <div class="preview-content" *ngIf="imagePreview">
+            <img [src]="imagePreview" alt="Preview" class="image-preview">
+            <button class="remove-image-btn" (click)="removeImage($event)">×</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Action buttons -->
+    <div class="actions">
+      <button class="create-btn" (click)="onCreate()" [disabled]="!triclopeName().trim()">
+        Créer le TriClope
+      </button>
+      <button class="cancel-btn" (click)="onCancel()">
+        Annuler
+      </button>
+    </div>
+  </div>
+</div>

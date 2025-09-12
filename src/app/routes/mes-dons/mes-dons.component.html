@@ -1,0 +1,82 @@
+<!-- Header Section -->
+<div class="header-section">
+  <div class="header-content">
+    <h1 class="page-title" style="text-transform: uppercase;">Tes Dons</h1>
+    <button class="close-btn" (click)="goBack()">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M18 6L6 18M6 6L18 18" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<!-- Total Donations Section -->
+<div class="total-section">
+  <div class="total-content">
+    <div class="avatar-circle">
+      <div class="avatar-placeholder">
+        <span class="avatar-text">{{ totalDonations }}</span>
+      </div>
+    </div>
+    <p class="total-label">Total des dons</p>
+  </div>
+</div>
+
+<!-- Statistics Section -->
+<div class="stats-section">
+  <div class="stats-row">
+    <div class="stat-item">
+      <div class="stat-number">{{ weeklyCount }}</div>
+      <div class="stat-label">Cette semaine</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">{{ monthlyCount }}</div>
+      <div class="stat-label">Ce mois-ci</div>
+    </div>
+  </div>
+</div>
+
+<!-- Add Scratching Button -->
+<div class="add-section">
+  <button class="add-btn" (click)="addScratching()">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="12" cy="12" r="10" stroke="#fff" stroke-width="2"/>
+      <path d="M12 8V16M8 12H16" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+    <span class="add-text">Ajouter un grattage</span>
+  </button>
+</div>
+
+<!-- Scratchers List -->
+<div class="scratchers-section">
+  <h2 class="section-title">Les gratteurs</h2>
+  <div class="scratchers-list">
+    <div
+      class="scratcher-card"
+      *ngFor="let user of donationUsers"
+      [style.background-color]="user.backgroundColor"
+      (click)="viewUserDonations(user.id)"
+    >
+      <div class="card-content">
+        <div class="user-info">
+          <div class="user-avatar">
+            <img [src]="user.avatar" [alt]="user.name" class="avatar-img" onerror="this.style.display='none'">
+            <div class="avatar-fallback">{{ user.name.charAt(0) }}</div>
+          </div>
+          <div class="user-details">
+            <div class="user-name">{{ user.name }}</div>
+            <div class="cigarette-info">
+              <span class="cigarette-count">{{ user.cigarettesCount }}</span>
+              <span class="cigarette-unit">clopes</span>
+            </div>
+          </div>
+        </div>
+        <div class="arrow-icon">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4.5 9L7.5 6L4.5 3" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
